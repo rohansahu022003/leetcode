@@ -11,8 +11,6 @@ public:
        nums[j]=0;
         
        }
-       for(auto it: nums){
-        cout<<it<<" ";
-       }
+      
     }
 };

@@ -17,7 +17,7 @@ public:
 
         }
         for(auto it:nums){
-            cout<<it<<" ";
+            cout<<it<<"";
         }
     }
 };

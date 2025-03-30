@@ -1,8 +1,9 @@
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
+              map<int,int>presum;
+
        int sum=0,cnt=0;
-       map<int,int>presum;
        presum[0]=1;
        int n=nums.size();
 

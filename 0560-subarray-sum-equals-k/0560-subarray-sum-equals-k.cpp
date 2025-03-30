@@ -10,7 +10,7 @@ public:
         sum+=nums[i];
         int remove=sum-k;
         cnt+=presum[remove];
-        presum[sum]++;
+        presum[sum]+=1;
        }
        return cnt;
     }

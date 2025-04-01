@@ -3,13 +3,14 @@ public:
     void rotate(vector<vector<int>>& matrix) {
        int row=matrix.size();
        int col= row>0?matrix[0].size():0;
-       vector<vector<int>>ans(row,vector<int>(col));
-
-       for(int i=0; i<row; i++){
-        for(int j=0; j<col; j++){
-            ans[j][(row-1-i)]=matrix[i][j];
+       for(int i=0; i<row-1; i++){
+        for(int j=i+1; j<col; j++){
+            swap(matrix[i][j],matrix[j][i]);
         }
-       } 
-       matrix=ans;
+
+       }
+       for(int i=0; i<row; i++){
+        reverse(matrix[i].begin(), matrix[i].end());
+       }
     }
 };

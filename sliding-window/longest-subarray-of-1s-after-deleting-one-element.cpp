@@ -8,7 +8,7 @@ public:
                 zerocount++;
             }
             if(zerocount>1){
-                if(nums[left]!=nums[left+1]){
+                if(nums[left]==0 && nums[left+1]==1){
                 left++;
                 zerocount--;
                 }

@@ -9,8 +9,15 @@ public:
             i++;
             j++;
         }
+        else if(nums[i]!=0){
+            i++;
+            j++;
+        }
     
-       else j++;
+       else{
+        
+         j++;
       }  
+    }
     }
 };

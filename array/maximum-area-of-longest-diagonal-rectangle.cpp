@@ -7,7 +7,8 @@ public:
         for(auto it: dimensions){
             int li=it[0];
             int bi=it[1];
-            if(int root=sqrt((li*li) + (bi*bi))>diagonal){
+            int root=sqrt((li*li) + (bi*bi));
+            if(root>diagonal){
                 diagonal=root;
                 l=li;
                 b=bi;

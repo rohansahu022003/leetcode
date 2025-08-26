@@ -28,12 +28,6 @@ public:
         }
     }
 
-    void noc(int& count,int n){
-        for(int i=0; i<n; i++){
-        if(i==parent[i])count++;
-        }
-    }
-
 
 };
 
@@ -42,24 +36,33 @@ class Solution {
 public:
     int removeStones(vector<vector<int>>& stones) {
         int n=stones.size();
-        int m=stones.size();
-        int numberofstones=0;
-        // if(n>m)
-        disjointsets ds(n);
-        // else disjointsets ds(m);
+       
+       int maxrow=0,maxcol=0;
+        
         
         for(auto s: stones){
-            numberofstones++;
-        int x=s[0];
-        int y=s[1];
-        ds.unionbysize(x,y);
+            maxrow=max(maxrow,s[0]);
+            maxcol=max(maxcol,s[1]);
+        }
+        int offset=maxrow+1;
+        disjointsets ds(maxrow+maxcol+2);
+        
+        set<int>nodes;
+        for(auto s:stones){
+            int row=s[0];
+            int col=s[1]+offset;
+            ds.unionbysize(row,col);
+            nodes.insert(row);
+            nodes.insert(col);
         }
 
+
         int components=0;
-    //  if(n>m)
-     ds.noc(components,n);
-// else ds.noc(components,m);
-        return numberofstones-components
+   
+     for(auto node:nodes){
+        if(ds.fup(node)==node)components++;
+     }
+        return n-components;
 
         
     }

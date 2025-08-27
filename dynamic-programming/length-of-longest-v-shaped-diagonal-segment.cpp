@@ -4,9 +4,9 @@ void dfs(int row,int col,vector<int>& ans, vector<vector<int>>& vis, bool& turn,
     int n=grid.size();
     int m=grid[0].size();
     vis[row][col]=1;
-    if(grid[row][col]==2 || grid[row][col]==0){
-        temp.push_back(grid[row][col]);
-    }
+    
+    temp.push_back(grid[row][col]);
+    
     int drow[]={1,1,-1,-1};
     int dcol[]={1,-1,1,-1};
 
@@ -124,7 +124,7 @@ public:
                 }
             }
         }
-        return ans.size()+1;
+        return ans.size();
 
     }
 };

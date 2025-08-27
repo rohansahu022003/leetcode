@@ -1,8 +1,7 @@
 class Solution {
-    const int dirs[4][2]={{-1,-1},{-1,1},{1,1},{1,-1}}; // 4 diagonals
+    const int dirs[4][2]={{-1,-1},{-1,1},{1,1},{1,-1}};
     inline bool inb(int r,int c,int n,int m){return r>=0&&r<n&&c>=0&&c<m;}
 
-    // rotate clockwise 90°
     inline pair<int,int> cw(int dx,int dy){ return {dy,-dx}; }
 
     int dfs(int r,int c,int dx,int dy,bool turn,
@@ -11,13 +10,12 @@ class Solution {
         int n=g.size(), m=g[0].size();
         int t=turn?1:0;
 
-        // encode direction to idx
         int dirId=-1;
         for(int d=0;d<4;d++) if(dirs[d][0]==dx && dirs[d][1]==dy) dirId=d;
 
         if(dp[r][c][dirId][t]!=-1) return dp[r][c][dirId][t];
 
-        // next expected value (cycle 1->2->0->2…)
+      
         int expected;
         if(g[r][c]==1) expected=2;
         else if(g[r][c]==2) expected=0;
@@ -25,12 +23,12 @@ class Solution {
 
         int best=1;
 
-        // straight
+        
         int nr=r+dx, nc=c+dy;
         if(inb(nr,nc,n,m) && g[nr][nc]==expected){
             best=max(best,1+dfs(nr,nc,dx,dy,turn,dp,g));
         }
-        // clockwise turn
+      
         if(!turn){
             auto [tx,ty]=cw(dx,dy);
             int nr2=r+tx, nc2=c+ty;
@@ -46,7 +44,7 @@ public:
         int n=grid.size(), m=grid[0].size();
         int ans=0;
 
-        // dp[r][c][dir][turn]
+        
         vector<vector<vector<vector<int>>>> dp(
             n, vector<vector<vector<int>>>(
                 m, vector<vector<int>>(4, vector<int>(2,-1))
@@ -56,7 +54,7 @@ public:
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
                 if(grid[i][j]==1){
-                    ans = max(ans, 1); // base case: at least this single 1
+                    ans = max(ans, 1); 
                     for(int d=0;d<4;d++){
                         int nr=i+dirs[d][0], nc=j+dirs[d][1];
                         if(inb(nr,nc,n,m) && grid[nr][nc]==2){

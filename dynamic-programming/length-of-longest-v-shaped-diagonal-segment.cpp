@@ -1,64 +1,71 @@
 class Solution {
-private:
-    void dfs(int row, int col, int& maxLen,
-             vector<vector<int>>& vis,
-             bool turn, vector<int>& temp,
-             int i, int j, vector<vector<int>>& grid) {
-        
-        int n = grid.size();
-        int m = grid[0].size();
-        
-        vis[row][col] = 1;
-        temp.push_back(grid[row][col]);
-        maxLen = max(maxLen, (int)temp.size());
+    const int dirs[4][2]={{-1,-1},{-1,1},{1,1},{1,-1}}; // 4 diagonals
+    inline bool inb(int r,int c,int n,int m){return r>=0&&r<n&&c>=0&&c<m;}
 
-        int drow[] = {1, 1, -1, -1};
-        int dcol[] = {1, -1, 1, -1};
+    // rotate clockwise 90°
+    inline pair<int,int> cw(int dx,int dy){ return {dy,-dx}; }
 
-        if (grid[row][col] == 1) {
-            for (int k = 0; k < 4; k++) {
-                int nrow = row + drow[k];
-                int ncol = col + dcol[k];
-                if (nrow >= 0 && nrow < n && ncol >= 0 && ncol < m && grid[nrow][ncol] == 2) {
-                    dfs(nrow, ncol, maxLen, vis, turn, temp, nrow - row, ncol - col, grid);
-                }
+    int dfs(int r,int c,int dx,int dy,bool turn,
+            vector<vector<vector<vector<int>>>>& dp,
+            vector<vector<int>>& g){
+        int n=g.size(), m=g[0].size();
+        int t=turn?1:0;
+
+        // encode direction to idx
+        int dirId=-1;
+        for(int d=0;d<4;d++) if(dirs[d][0]==dx && dirs[d][1]==dy) dirId=d;
+
+        if(dp[r][c][dirId][t]!=-1) return dp[r][c][dirId][t];
+
+        // next expected value (cycle 1->2->0->2…)
+        int expected;
+        if(g[r][c]==1) expected=2;
+        else if(g[r][c]==2) expected=0;
+        else expected=2; 
+
+        int best=1;
+
+        // straight
+        int nr=r+dx, nc=c+dy;
+        if(inb(nr,nc,n,m) && g[nr][nc]==expected){
+            best=max(best,1+dfs(nr,nc,dx,dy,turn,dp,g));
+        }
+        // clockwise turn
+        if(!turn){
+            auto [tx,ty]=cw(dx,dy);
+            int nr2=r+tx, nc2=c+ty;
+            if(inb(nr2,nc2,n,m) && g[nr2][nc2]==expected){
+                best=max(best,1+dfs(nr2,nc2,tx,ty,true,dp,g));
             }
         }
-        else if (grid[row][col] == 2 || grid[row][col] == 0) {
-            int expected = (grid[row][col] == 2 ? 0 : 2);
-            int nrow = row + i;
-            int ncol = col + j;
-            if (nrow >= 0 && nrow < n && ncol >= 0 && ncol < m && grid[nrow][ncol] == expected && !vis[nrow][ncol]) {
-                dfs(nrow, ncol, maxLen, vis, turn, temp, i, j, grid);
-            }
-            if (!turn) { // allow one clockwise turn
-                int ni = j, nj = -i; // clockwise rotation
-                nrow = row + ni;
-                ncol = col + nj;
-                if (nrow >= 0 && nrow < n && ncol >= 0 && ncol < m && grid[nrow][ncol] == expected && !vis[nrow][ncol]) {
-                    dfs(nrow, ncol, maxLen, vis, true, temp, ni, nj, grid);
-                }
-            }
-        }
-
-        temp.pop_back();
-        vis[row][col] = 0; // backtrack
+        return dp[r][c][dirId][t]=best;
     }
 
 public:
     int lenOfVDiagonal(vector<vector<int>>& grid) {
-        int n = grid.size(), m = grid[0].size();
-        int maxLen = 0;
-        
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (grid[i][j] == 1) {
-                    vector<vector<int>> vis(n, vector<int>(m, 0));
-                    vector<int> temp;
-                    dfs(i, j, maxLen, vis, false, temp, 0, 0, grid);
+        int n=grid.size(), m=grid[0].size();
+        int ans=0;
+
+        // dp[r][c][dir][turn]
+        vector<vector<vector<vector<int>>>> dp(
+            n, vector<vector<vector<int>>>(
+                m, vector<vector<int>>(4, vector<int>(2,-1))
+            )
+        );
+
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]==1){
+                    ans = max(ans, 1); // base case: at least this single 1
+                    for(int d=0;d<4;d++){
+                        int nr=i+dirs[d][0], nc=j+dirs[d][1];
+                        if(inb(nr,nc,n,m) && grid[nr][nc]==2){
+                            ans=max(ans,1+dfs(nr,nc,dirs[d][0],dirs[d][1],false,dp,grid));
+                        }
+                    }
                 }
             }
         }
-        return maxLen;
+        return ans;
     }
 };

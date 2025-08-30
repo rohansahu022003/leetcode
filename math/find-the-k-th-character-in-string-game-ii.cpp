@@ -1,27 +1,30 @@
 class Solution {
 public:
     char kthCharacter(long long k, vector<int>& operations) {
-        long long len = 1; 
-        int n = operations.size();
+      char c='a';
+      long long len=1;
+      vector<long long>length;
+      int shift=0;
+
+
+       for(int i=0; i<operations.size(); i++){
+        len*=2;
+        length.push_back(len);
+        if(len>k)break;
         
-        // compute final length capped at something larger than k
-        for (int i = 0; i < n; i++) {
-            if (len > k) break;
-            len *= 2;
-        }
-        
-        int shift = 0;  // track how many times character was incremented
-        
-        for (int i = n - 1; i >= 0; i--) {
-            long long half = len / 2;
-            if (k > half) {
-                k -= half;
-                if (operations[i] == 1) shift++;
+       }
+
+       for(int i=length.size()-1; i>=0; i--){
+        long long half= length[i]/2;
+        if(k>half){
+            k-=half;
+            if(operations[i]==1){
+              shift++;
             }
-            len /= 2;
+            
         }
         
-        char ans = 'a' + (shift % 26);
-        return ans;
-    }
+       }
+        return c+ (shift % 26);
+       }
 };

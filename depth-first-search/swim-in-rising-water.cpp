@@ -12,17 +12,13 @@ public:
         int time=0;
         while(!pq.empty()){
             auto it=pq.top();
-             pq.pop();
             int node=it.first;
             int row=it.second.first;
             int col=it.second.second;
-            time=max(time,node);
-            if(row==n-1 && col==n-1)break;
-            if(vis[row][col])continue;
             vis[row][col]=true;
-           
-           
-            
+            time=max(time,node);
+            pq.pop();
+            if(row==n-1 && col==n-1)break;
 
             for(int i=0; i<4; i++){
                 int nrow=row+drow[i];

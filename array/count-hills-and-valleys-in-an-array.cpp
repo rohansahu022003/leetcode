@@ -13,7 +13,7 @@ public:
                 j+=2;
                 k+=2;
             }
-            if(nums[i]==nums[j]){
+            while(nums[i]==nums[j]){
                 i++;
                 j++;
                 k++;

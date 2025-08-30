@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int countHillValley(vector<int>& nums) {
+        int n=nums.size();
+        int i=1;
+        int k=2;
+        int j=0;
+        int count=0;
+
+        while(k<n){
+            if(nums[i]==nums[j]){
+                i++;
+                j++;
+                k++;
+            }
+            if(nums[i]==nums[k]){
+                i++;
+                k++;
+            }
+            if(nums[j]==nums[j+1]){
+                j++;
+            }
+            if((nums[j]<nums[i] && nums[i]>nums[k]) || (nums[j]>nums[i] && nums[i]<nums[k])){
+                count++;
+                
+            }
+                j++;
+                i++;
+                k++;
+            
+
+        } 
+        return count;
+
+    }
+};

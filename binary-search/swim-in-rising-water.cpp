@@ -2,7 +2,7 @@ class Solution {
 public:
     int swimInWater(vector<vector<int>>& grid) {
         int n=grid.size();
-        vector<vector<int>>vis(n,vector<int>(n,0));
+       vector<vector<bool>> vis(n, vector<bool>(n, false));
         using T=pair<int,pair<int,int>>;
         priority_queue<T,vector<T>,greater<T>>pq;
         int nod=grid[0][0];
@@ -15,7 +15,7 @@ public:
             int node=it.first;
             int row=it.second.first;
             int col=it.second.second;
-            vis[row][col]=1;
+            vis[row][col]=true;
             time=max(time,node);
             pq.pop();
             if(row==n-1 && col==n-1)break;

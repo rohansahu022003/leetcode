@@ -84,17 +84,8 @@ public:
                 }
             }
         }
-        if(ans==0){
-            ans=ds.getsize(0);
-            // for(int i=0; i<n; i++){
-            //     for(int j=0; j<n; j++){
-            //         if(grid[i][j]==1){
-            //             int node=i*n+j;
-            //             ans=ds.getsize(0);
-            //         }
-            //     }
-            // }
-        }
+        if(ans==0)ans=ds.getsize(0);
+        
         return  ans;
         
     }

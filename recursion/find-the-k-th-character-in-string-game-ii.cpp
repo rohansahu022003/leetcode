@@ -1,26 +1,17 @@
 class Solution {
 public:
     char kthCharacter(long long k, vector<int>& operations) {
-        string word="a";
+       char c='a';
 
-      
-        for(int i=0; i<operations.size(); i++){
-
-            
-                string oldword=word;
-                for(auto c: oldword){
-                    if(operations[i]==0){
-                        word.push_back(c);
-
-                    }
-                    else{
-                        c+=1;
-                        word.push_back(c);
-                    }
-                }
-            
+       for(int i=operations.size()-1; i>=0;i--){
+        long long half= 1LL<<i;
+        if(k>half){
+            k-=half;
+            if(operations[i]==1){
+                c=(c=='z'?'a':c+1);
+            }
         }
-    
-        return word[k-1];
-    }
+       }
+        return c;
+       }
 };

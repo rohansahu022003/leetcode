@@ -8,6 +8,11 @@ public:
         int count=0;
 
         while(k<n){
+            if(nums[i]==nums[j]==nums[k]){
+                i+=2;
+                j+=2;
+                k+=2;
+            }
             if(nums[i]==nums[j]){
                 i++;
                 j++;

@@ -8,7 +8,7 @@ public:
         int count=0;
 
         while(k<n){
-            if(nums[i]==nums[j]==nums[k]){
+            while(nums[i]==nums[j]==nums[k]){
                 i+=2;
                 j+=2;
                 k+=2;
@@ -18,11 +18,11 @@ public:
                 j++;
                 k++;
             }
-            if(nums[i]==nums[k]){
+            while(nums[i]==nums[k]){
                 i++;
                 k++;
             }
-            if(nums[j]==nums[j+1]){
+            while(nums[j]==nums[j+1]){
                 j++;
             }
             if((nums[j]<nums[i] && nums[i]>nums[k]) || (nums[j]>nums[i] && nums[i]<nums[k])){

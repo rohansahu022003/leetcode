@@ -13,7 +13,7 @@ public:
         while(y>0){
             int digit=y%10;
             y/=10;
-            if(n*10>=INT_MAX || n*10<=INT_MIN){
+            if(n>=INT_MAX/10 || n<=INT_MIN/10){
                 return 0;
             }
             n=n*10+digit;

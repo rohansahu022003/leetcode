@@ -1,7 +1,7 @@
 class Solution {
 public:
     int reverse(int x) {
-        if(x<INT_MIN && x>INT_MAX){
+        if(x<=INT_MIN && x>=INT_MAX){
             return 0;
         }
         int y;

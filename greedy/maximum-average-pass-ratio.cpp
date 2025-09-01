@@ -12,9 +12,10 @@ public:
             auto it= pq.top();
             int i =it.second;
             pq.pop();
-                double newgain= (double)(classes[i][0]+1)/(classes[i][1]+1) - (double)classes[i][0]/classes[i][1];
-                classes[i][0]++;
+             classes[i][0]++;
                 classes[i][1]++;
+                double newgain= (double)(classes[i][0]+1)/(classes[i][1]+1) - (double)classes[i][0]/classes[i][1];
+               
                 pq.push({newgain,i});
         }
         double sum=0;

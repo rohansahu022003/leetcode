@@ -1,9 +1,6 @@
 class Solution {
 public:
     int reverse(int x) {
-        if(x<=INT_MIN && x>=INT_MAX){
-            return 0;
-        }
         int y;
         if(x<0)
         {y=-(x);
@@ -16,6 +13,9 @@ public:
         while(y>0){
             int digit=y%10;
             y/=10;
+            if(n*10>=INT_MAX || n*10<=INT_MIN){
+                return 0;
+            }
             n=n*10+digit;
 
         }

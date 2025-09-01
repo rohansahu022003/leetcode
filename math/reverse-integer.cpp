@@ -12,7 +12,7 @@ public:
             y=x;
         }
         
-        n=0;
+       int n=0;
         while(y>0){
             int digit=y%10;
             y/=10;

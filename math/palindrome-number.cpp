@@ -10,7 +10,7 @@ public:
         n=n*10+d;
         x/=10; 
       }  
-      if(n!=check)return false;
-      return true;
+      if(n==check)return true;
+      return false;
     }
 };

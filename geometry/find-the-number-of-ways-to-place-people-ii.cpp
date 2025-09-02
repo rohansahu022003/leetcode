@@ -8,7 +8,7 @@ public:
         
         for(int i=0; i<p.size(); i++){
             int a=p[i][1];
-            int y=-1;
+            int y=INT_MIN;
             for(int j=i+1; j<p.size(); j++){
                 int b=p[j][1];
                 if(a>=b && b>y){

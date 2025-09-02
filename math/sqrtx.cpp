@@ -4,7 +4,7 @@ public:
         if(x==0)return 0;
         if(x<2)return 1;
 
-       int i=2;
+       long long i=2;
        while(i*i<=x){
         i++;
        }

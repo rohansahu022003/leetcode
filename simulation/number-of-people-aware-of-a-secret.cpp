@@ -1,28 +1,28 @@
 class Solution {
 public:
     int peopleAwareOfSecret(int n, int delay, int forget) {
-        int mod=1e9+7;
+       const int mod=1e9+7;
 
-        queue<pair<int,int>>q;
-        q.push({1,1});
+       vector<int>dp(n+1,0);
+       dp[1]=1;
 
-        for(int i=1; i<=n; i++){
-            int size=q.size();
-            while(size){
-                int forgetday=q.front().first;
-                int delayday=q.front().second;
-                q.pop();
-            if(forgetday<=forget){
-                if(delayday>delay){
-                    q.push({2,2});
-                }
-                q.push({forgetday+1,delayday+1});
-            }
-            size--;
-            }
+       long long share=0;
 
+       for(int i=2; i<=n; i++){
+
+        if(i-delay>=1){
+            share=(share+dp[i-delay])%mod;
         }
-        return q.size()%mod;
+        if(i-forget>=1){
+            share=(share-dp[i-forget]+mod)%mod;
+        }
+        dp[i]=share;
+       }
 
+       long long ans=0;
+       for(int i=n-forget+1; i<=n; i++){
+        if(i>=1)ans=(ans+dp[i])%mod;
+       }
+return ans;
     }
 };

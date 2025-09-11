@@ -2,17 +2,18 @@ class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
         vector<int>ans;
-        long long num=0;
-        for(int i=0; i<digits.size();i++){
-            num=num*10+digits[i];
+        int j=1;
+        for(int i=digits.size()-1; i>=0; i--){
+            int d=digits[i]+j;
+            if(d<10){
+                ans.push_back(d);
+                j=0;
+            }
+            else{
+                ans.push_back(d%10);
+            }
         }
-        num++;
-        while(num){
-            int d=num%10;
-            ans.push_back(d);
-            num/=10;
-
-        }
+        if(j==1)ans.push_back(1);
         reverse(ans.begin(),ans.end());
         return ans;
     }

@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
         vector<int>ans;
-        int num=0;
+        long long num=0;
         for(int i=0; i<digits.size();i++){
             num=num*10+digits[i];
         }

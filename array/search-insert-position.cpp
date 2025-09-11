@@ -1,19 +1,15 @@
 class Solution {
 public:
     int searchInsert(vector<int>& nums, int target) {
-        if(find(nums.begin(),nums.end(),target)!=nums.end()){
-            for(int i=0; i<nums.size(); i++){
-                if(nums[i]==target){
-                    return i;
-                }
-            }
-        }
-        else{
-            for(int i=0; i<nums.size();i++){
-                if(nums[i]>target)return i;
+       int start=0;
+       int stop=nums.size()-1;
 
-            }
-        }
-        return nums.size();
+       while(start<=stop){
+        int mid=(start+stop)/2;
+        if(nums[mid]==target)return mid;
+        else if(nums[mid]>target)stop=mid-1;
+        else start=mid+1;
+       }
+       return start;
     }
 };

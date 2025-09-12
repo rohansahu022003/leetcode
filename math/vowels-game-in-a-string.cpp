@@ -2,11 +2,7 @@ class Solution {
     private:
     int isvowel(char c,int& count){
         string vowel="aeiou";
-        for(auto v:vowel){
-            if(v==c){
-                count++;
-            }
-        }
+       if(vowel.find(c)!=string::npos)count++;
         return count;
         
     }

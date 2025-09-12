@@ -1,13 +1,12 @@
 class Solution {
-   
 public:
     bool doesAliceWin(string s) {
-      string vowel="aeiou";
-
-      for(auto c:s){
-        if(vowel.find(c)!=string::npos)return true;
-      }
-       
+    string t="aeiouAEIOU";
+        for(int i=0;i<s.size();i++)
+        {
+            if(t.find(s[i])!=string::npos)
+            return true;
+        }
         return false;
     }
 };

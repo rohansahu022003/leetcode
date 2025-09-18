@@ -42,6 +42,7 @@ public:
     }
     
     int execTop() {
+         if (globalranking.empty()) return -1;
         auto best=globalranking.begin();
         int besttask=best->second;
         globalranking.erase(best);

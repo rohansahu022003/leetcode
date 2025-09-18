@@ -1,52 +1,39 @@
 class TaskManager {
-    unordered_map<int,int>tasktouser;
-    unordered_map<int,int>tasktopriority;
-    // unordered_map<int,set<pair<int,int>>>usertopriority;
-    set<pair<int,int>,greater<>>globalranking;
+    unordered_map<int,pair<int,int>>taskto;
+    priority_queue<tuple<int,int,int>>pq;
 public:
     TaskManager(vector<vector<int>>& tasks) {
        for(int i=0; i<tasks.size(); i++){
-        tasktouser[tasks[i][1]]=tasks[i][0];
-        tasktopriority[tasks[i][1]]=tasks[i][2];
-        // usertopriority[tasks[i][0]].insert({-tasks[i][2],tasks[i][1]});
-        globalranking.insert({tasks[i][2],tasks[i][1]});
+        taskto[tasks[i][1]]={tasks[i][0],tasks[i][2]};
+        pq.push({tasks[i][2],tasks[i][1],tasks[i][0]});
        } 
     }
     
     void add(int userId, int taskId, int priority) {
-        tasktouser[taskId]=userId;
-        tasktopriority[taskId]=priority;
-        // usertopriority[userId].insert({-priority,taskId});
-        globalranking.insert({priority,taskId});
+      taskto[taskId]={userId,priority};
+        pq.push({priority,taskId,userId});
     }
     
     void edit(int taskId, int newPriority) {
-        int userid=tasktouser[taskId];
-        int oldpriority=tasktopriority[taskId];
-        tasktopriority[taskId]=newPriority;
-        // usertopriority[userid].erase({-oldpriority,taskId});
-        // usertopriority[userid].insert({-newPriority,taskId});
-        globalranking.erase({oldpriority,taskId});
-        globalranking.insert({newPriority,taskId});
+       taskto[taskId].second=newPriority;
+       int userid=taskto[taskId].first;
+       pq.push({newPriority, taskId,userid});
 
         
     }
     
     void rmv(int taskId) {
-        int userid=tasktouser[taskId];
-        int p=tasktopriority[taskId];
-        tasktouser.erase(taskId);
-        tasktopriority.erase(taskId);
-        // usertopriority[userid].erase({-p, taskId});
-        globalranking.erase({p,taskId});
+       taskto.erase(taskId);
     }
     
     int execTop() {
-         if (globalranking.empty()) return -1;
-        auto best=globalranking.begin();
-        int besttask=best->second;
-        globalranking.erase(best);
-        return tasktouser[besttask];
+       while(!pq.empty()){
+        auto [p,t,u]=pq.top();
+        pq.pop();
+        if(taskto.find(t)!=taskto.end() && taskto[t].second==p)return u;
+       }
+         return -1;
         
     }
+  
 };

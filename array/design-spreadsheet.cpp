@@ -26,9 +26,7 @@ public:
         string newa="";
         string newb="";
         int a,b,n;
-        for(int i=0; i<formula.size(); i++){
-            if(formula[i]=='+')n=i;
-        }
+        n=formula.find('+');
         newa=formula.substr(1,n-1);
         newb=formula.substr(n+1,formula.size()-n);
         

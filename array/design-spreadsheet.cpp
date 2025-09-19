@@ -1,5 +1,6 @@
 class Spreadsheet {
     vector<vector<int>>sheet;
+
 public:
     Spreadsheet(int rows) {
         sheet.resize(rows+1,vector<int>(26,0));
@@ -8,9 +9,7 @@ public:
     void setCell(string cell, int value) {
         int c=cell[0]-'A';
         string num="";
-        for(int i=1; i<cell.length(); i++){
-        num.push_back(cell[i]);
-        }
+        num=cell.substr(1);
         int r=stoi(num);
         sheet[r][c]=value;
     }
@@ -18,9 +17,7 @@ public:
     void resetCell(string cell) {
          int c=cell[0]-'A';
         string num="";
-        for(int i=1; i<cell.length(); i++){
-        num.push_back(cell[i]);
-        }
+       num=cell.substr(1);
         int r=stoi(num);
         sheet[r][c]=0;
     }
@@ -68,11 +65,3 @@ return a+b;
        
     }
 };
-
-/**
- * Your Spreadsheet object will be instantiated and called as such:
- * Spreadsheet* obj = new Spreadsheet(rows);
- * obj->setCell(cell,value);
- * obj->resetCell(cell);
- * int param_3 = obj->getValue(formula);
- */

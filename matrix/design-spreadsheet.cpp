@@ -36,12 +36,10 @@ public:
                 a=stoi(newa);
         }
         
-        else{
+    else{
         int c=newa[0]-'A';
         string num="";
-        for(int i=1; i<newa.length(); i++){
-        num.push_back(newa[i]);
-        }
+       num=newa.substr(1);
         int r=stoi(num);
         a=sheet[r][c];
             }
@@ -52,9 +50,7 @@ public:
         else{
         int c=newb[0]-'A';
         string num="";
-        for(int i=1; i<newb.length(); i++){
-        num.push_back(newb[i]);
-        }
+       num=newb.substr(1);
         int r=stoi(num);
              b=sheet[r][c];
             }

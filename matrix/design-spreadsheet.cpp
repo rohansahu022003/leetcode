@@ -26,7 +26,9 @@ public:
         string newa="";
         string newb="";
         int a,b,n;
-        n=formula.find('+');
+        for(int i=0; i<formula.size(); i++){
+            if(formula[i]=='+')n=i;
+        }
         newa=formula.substr(1,n-1);
         newb=formula.substr(n+1,formula.size()-n);
         
@@ -34,10 +36,12 @@ public:
                 a=stoi(newa);
         }
         
-    else{
+        else{
         int c=newa[0]-'A';
         string num="";
-       num=newa.substr(1);
+        for(int i=1; i<newa.length(); i++){
+        num.push_back(newa[i]);
+        }
         int r=stoi(num);
         a=sheet[r][c];
             }
@@ -48,7 +52,9 @@ public:
         else{
         int c=newb[0]-'A';
         string num="";
-       num=newb.substr(1);
+        for(int i=1; i<newb.length(); i++){
+        num.push_back(newb[i]);
+        }
         int r=stoi(num);
              b=sheet[r][c];
             }

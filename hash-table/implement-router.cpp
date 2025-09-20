@@ -41,7 +41,7 @@ public:
         int count=0;
         for(auto m: routemap){
             if(m.second.first==destination && startTime<=m.second.second &&
-           m.second.second<=endTime && startTime!=endTime)count++;
+           m.second.second<=endTime )count++;
         }
         return count;
     }

@@ -5,10 +5,10 @@ public:
        else if(x==1)return double(1);
         if(n==0)return 1;
         double ans=1;
-
-        if(n<0){
+long long N=n
+        if(N<0){
             x=1/x;
-            n=-n;
+            N=-N;
         }
         while(n>0){
             if(n%2==1)ans*=x;

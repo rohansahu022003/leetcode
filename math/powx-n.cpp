@@ -13,7 +13,7 @@ long long N=n;
         while(N>0){
             if(n%2==1)ans*=x;
             x*=x;
-            n/=2;
+            N/=2;
         }
 return ans;
     }

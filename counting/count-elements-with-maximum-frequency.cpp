@@ -11,7 +11,7 @@ public:
 
         for(auto f: freq){
             if(f.second>maxfreq){
-                maxfreq=max(maxfreq,f.second);
+                maxfreq=f.second;
                 ans=0;
                 ans+=f.second;
             }

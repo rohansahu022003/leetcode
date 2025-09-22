@@ -10,7 +10,7 @@ long long N=n;
             x=1/x;
             N=-N;
         }
-        while(n>0){
+        while(N>0){
             if(n%2==1)ans*=x;
             x*=x;
             n/=2;

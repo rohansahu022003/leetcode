@@ -11,7 +11,7 @@ long long N=n;
             N=-N;
         }
         while(N>0){
-            if(n%2==1)ans*=x;
+            if(N%2==1)ans*=x;
             x*=x;
             N/=2;
         }

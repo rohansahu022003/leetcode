@@ -6,16 +6,14 @@ public:
         if(n==0)return 1;
         double ans=1;
 
-        if (n>0){
-            for(double i=1; i<=n; i++){
-                ans*=x;
-            }
+        if(n<0){
+            x=1/x;
+            n=-n;
         }
-        else {
-            while(n){
-                ans=ans/x;
-               n++;
-            }
+        while(n>0){
+            if(n%2==1)ans*=x;
+            x*=x;
+            n/=2;
         }
 return ans;
     }

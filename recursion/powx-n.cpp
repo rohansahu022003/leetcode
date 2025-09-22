@@ -5,7 +5,7 @@ public:
        else if(x==1)return double(1);
         if(n==0)return 1;
         double ans=1;
-long long N=n
+long long N=n;
         if(N<0){
             x=1/x;
             N=-N;

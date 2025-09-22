@@ -7,7 +7,7 @@ public:
        if(n>0)ans=pow(x,n);
        else{
         long long N=n;
-        N=-N
+        N=-N;
         ans=1/pow(x,N);
        }
 return ans;

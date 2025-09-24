@@ -15,6 +15,7 @@ public:
                 mx2=x;
             }
         }
+        if(mx2==0)return ind;
         if(mx1/mx2>=2)return ind;
         return -1 ;
     }

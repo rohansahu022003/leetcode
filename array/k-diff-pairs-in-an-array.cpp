@@ -5,18 +5,19 @@ public:
         sort(nums.begin(), nums.end());
         int i=0;
         int j=1;
-        int count=0;
+       set<pair<int,int>>st;
         while(i<n-1 && j<n){
             if(i==j)j++;
             int diff=abs(nums[i]-nums[j]);
             if(diff<k)j++;
             else if(diff>k)i++;
             else{
-                count++;
+               st.insert({nums[i],nums[j]});
                 i++;
                 j++;
             }
         }
+        int count=st.size();
         return count;
     }
 };

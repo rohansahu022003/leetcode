@@ -15,7 +15,7 @@ public:
             else if(k==2)ans[i]="Silver Medal";
             else if(k==3)ans[i]="Bronze Medal";
             else{
-                ans[i]=k+'0';
+                ans[i]=to_string(k);
             }
             k++;
             pq.pop();

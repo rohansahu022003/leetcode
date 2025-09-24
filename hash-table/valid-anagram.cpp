@@ -1,9 +1,16 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        for(int i=0; i<t.size(); i++){
-            if(s.find(t[i])==string::npos)return false;
+        if(s.size()!=t.size())return false;
+
+        unordered_map<char,int>freq;
+        for(int i=0; i<s.size(); i++){
+            freq[s[i]]++;
         }
-        return true;
+        for(int i=0; i<t.size(); i++){
+            freq[t[i]]--;
+            if(freq[t[i]]==0)freq.erase(t[i]);
+        }
+        return (freq.empty());
     }
 };

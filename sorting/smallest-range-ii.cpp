@@ -1,17 +1,13 @@
 class Solution {
 public:
-    int smallestRangeII(vector<int>& nums, int k) {
-        if(nums.size()==1)return 0;
-        sort(nums.begin(), nums.end());
-        int n=nums.size();
-        int ans=nums[n-1]-nums[0];
-
-        for(int i=0;i<n-1;i++){
-            int high=max(nums[i]+k,nums[n-1]-k);
-            int low=min(nums[0]+k,nums[i+1]-k);
-            ans=min(ans,high-low);
+    int smallestRangeII(vector<int>& A, int K) {
+        sort(A.begin(), A.end());
+        int res = A[A.size() - 1] - A[0];
+        int left = A[0] + K, right = A[A.size() - 1] - K;
+        for (int i = 0; i < A.size() - 1; i++) {
+            int maxi = max(A[i] + K, right), mini = min(left, A[i + 1] - K);
+            res = min(res, maxi - mini);
         }
-        return ans;
-
+        return res;
     }
 };

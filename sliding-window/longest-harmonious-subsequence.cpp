@@ -11,7 +11,7 @@ public:
             maxlen=max(maxlen,j-i+1);
            }
            if(k>1)i++;
-           j++;
+         else j++;
         }
         if(maxlen==INT_MIN)return 0;
         return maxlen;

@@ -10,7 +10,7 @@ public:
            if(k==1){
             maxlen=max(maxlen,j-i+1);
            }
-           if(k!=1)i++;
+           if(k>1)i++;
            j++;
         }
         if(maxlen==INT_MIN)return 0;

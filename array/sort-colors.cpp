@@ -1,12 +1,13 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-       for(int i=nums.size()-1; i>=1; i--){
-        for(int j=0; j<i; j++){
-            if(nums[j]>nums[j+1]){
-                swap(nums[j],nums[j+1]);
-            }
+        priority_queue<int>pq;
+        for(int i=0;i<nums.size(); i++){
+            pq.push(nums[i]);
         }
-       } 
+        for(int i=nums.size()-1; i>=0; i--){
+            nums[i]=pq.top();
+            pq.pop();
+        }
     }
 };

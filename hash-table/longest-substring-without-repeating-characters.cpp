@@ -9,6 +9,7 @@ public:
         if(ans.find(s[i])!=string::npos){
             len=0;
             ans="";
+            if(s[i]!=s[i-1])i--;
         }
         ans.push_back(s[i]);
         len=ans.size();

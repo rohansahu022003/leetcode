@@ -1,19 +1,35 @@
 class Solution {
 public:
-    long long myAtoi(string s) {
+    int myAtoi(string s) {
         long long ans=0;
         int count=0;
-        for(int i=0; i<s.size();i++){
-            if(s[i]==' ')continue;
-            if(s[i]=='-' && count!=0)break;
-            else if(s[i]=='-')continue;
-            else if(isalpha(s[i]))break;
-            else{
-                count++;
-                 ans=ans*10+s[i]-'0';
+        int sign=1;
+        int i=0;
+        int n=s.size();
+       while(i<n && s[i]==' '){
+        i++;
+       }
+       if(s[i]=='-'){
+        sign=-1;
+        i++;
+       }
+       
+      
+       while (i < n && isdigit(s[i])) {
+            int digit = s[i] - '0';
+            ans = ans * 10 + digit;
+            
+            if (sign * ans <= INT_MIN) {
+                return INT_MIN;
             }
+            if (sign * ans >= INT_MAX) {
+                return INT_MAX;
+            }
+            
+            i++;
         }
-        if(s.find('-')!=string::npos)return -ans;
-        return ans;
+
+        
+        return static_cast<int>(sign*ans);
     }
 };

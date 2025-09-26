@@ -6,14 +6,20 @@ public:
     int len=0;
     int maxlen=INT_MIN;
     for(int i=0; i<s.size(); i++){
-        if(ans.find(s[i])!=string::npos){
-            len=0;
+       int j=i;
+       while(j<s.size()){
+        if(ans.find(s[j])!=string::npos){
             ans="";
-            if(s[i]!=s[i-1])i--;
+            break;
         }
-        ans.push_back(s[i]);
+        ans.push_back(s[j]);
         len=ans.size();
         maxlen=max(maxlen,len);
+        
+        j++;
+
+       }
+       
     }
     return maxlen;
     }

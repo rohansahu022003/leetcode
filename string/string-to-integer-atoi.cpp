@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int myAtoi(string s) {
+        int ans=0;
+        for(int i=0; i<s.size();i++){
+            if(s[i]==' ')continue;
+            else if(s[i]=='-' && isdigit(s[i-1]))break;
+            else if(s[i]=='-')continue;
+            else if(isalpha(s[i]))break;
+            else ans=ans*10+s[i]-'0';
+        }
+        if(s.find('-')!=string::npos)return -ans;
+        return ans;
+    }
+};

@@ -1,7 +1,7 @@
 class Solution {
 public:
-    int myAtoi(string s) {
-        int ans=0;
+    long long myAtoi(string s) {
+        long long ans=0;
         for(int i=0; i<s.size();i++){
             if(s[i]==' ')continue;
             else if(s[i]=='-' && isdigit(s[i-1]))break;

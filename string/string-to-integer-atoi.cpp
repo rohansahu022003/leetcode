@@ -9,7 +9,8 @@ public:
        while(i<n && s[i]==' '){
         i++;
        }
-       if(s[i]=='-'){
+       if(s[i]=='+')i++;
+       else if(s[i]=='-'){
         sign=-1;
         i++;
        }

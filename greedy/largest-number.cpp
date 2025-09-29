@@ -10,7 +10,7 @@ public:
         sort(arr.begin(),arr.end(),[](string& a,string& b){
             return a+b>b+a;
         });
-if(arr[0]=='0')return 0;
+if(arr[0]=="0")return "0";
       string ans="";
 
         for(auto x: arr){

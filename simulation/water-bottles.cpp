@@ -1,6 +1,7 @@
 class Solution {
 public:
     int numWaterBottles(int n, int k) {
+        if(n<k)return n;
         int ans=0;
         int carry=0;
         int empty=n;

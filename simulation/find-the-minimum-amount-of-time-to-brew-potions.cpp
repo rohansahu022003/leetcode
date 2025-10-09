@@ -1,5 +1,6 @@
 class Solution {
-    public long minTime(int[] skill, int[] mana) {
+    public :
+    long minTime(int[] skill, int[] mana) {
         int n = skill.length, m = mana.length;
         long[] done = new long[n + 1];
         

@@ -8,16 +8,16 @@ public:
         int sub2=0;
         int ind1=i;
         int ind2=j;
-        while(j+k<nums.size()){
-            if(nums[ind1]<nums[ind1+1] && sub1<2){
+        while(j+k-1<nums.size()){
+            if(ind1 + 1 < nums.size() && nums[ind1]<nums[ind1+1] && sub1<k-1){
                 sub1++;
                 ind1++;
             }
-            else if(nums[ind2]<nums[ind2+1] && sub1==2 && sub2<2){
+            else if(ind2 + 1 < nums.size() && nums[ind2]<nums[ind2+1] && sub1==k-1 && sub2<k-1){
                 sub2++;
                 ind2++;
             }
-            else if(sub1==2 && sub2==2)return true;
+            else if(sub1==k-1 && sub2==k-1)return true;
 
             else{
                 i++;

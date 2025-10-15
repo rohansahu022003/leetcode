@@ -16,8 +16,7 @@ public:
             }
 
         }
-
-      
+        if(prev+curr==nums.size())return curr;
         return k;
     }
 };

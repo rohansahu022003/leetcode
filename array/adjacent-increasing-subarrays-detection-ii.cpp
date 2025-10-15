@@ -16,7 +16,9 @@ public:
             }
 
         }
-        if(prev+curr==nums.size())return min(prev,curr);
+        if(nums[nums.size()-1]>nums[nums.size()-2]){
+             k=max(k,min(prev,curr));
+        }
         return k;
     }
 };

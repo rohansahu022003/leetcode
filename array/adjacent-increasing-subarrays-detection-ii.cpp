@@ -16,7 +16,7 @@ public:
             }
 
         }
-        if(prev+curr==nums.size())return curr;
+        if(prev+curr==nums.size())return min(prev,curr);
         return k;
     }
 };

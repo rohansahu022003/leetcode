@@ -3,7 +3,7 @@ public:
     long long minOperationsToMakeMedianK(vector<int>& nums, int k) {
         sort(nums.begin(), nums.end());
 long long count=0;
-        if(nums.size()%2==1){
+        {
             long long mid= ceil(nums.size()/2);
             long long mid2=mid;
             if(nums[mid]!=k){

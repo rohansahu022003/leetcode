@@ -7,6 +7,7 @@ public:
     
     void addNum(int num) {
         arr.push_back(num);
+        sort(arr.begin(), arr.end());
     }
     
     double findMedian() {

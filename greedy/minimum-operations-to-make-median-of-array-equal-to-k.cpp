@@ -10,13 +10,13 @@ long long count=0;
                 count+=abs(nums[mid]-k);
                 nums[mid]=k;
             }
-            while(mid-1>=0 && nums[mid-1]>nums[mid]){
-                count+=abs(nums[mid-1]-nums[mid]);
+            while(mid-1>=0 && nums[mid-1]>k){
+                count+=abs(nums[mid-1]-k);
                 nums[mid-1]=k;
                 mid--;
             }
-            while(mid2+1<nums.size() && nums[mid2+1]<nums[mid2]){
-                count+=abs(nums[mid2+1]-nums[mid2]);
+            while(mid2+1<nums.size() && nums[mid2+1]<k){
+                count+=abs(nums[mid2+1]-k);
                 nums[mid2]=k;
                 mid2++;
             }

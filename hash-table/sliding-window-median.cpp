@@ -2,35 +2,32 @@ class Solution {
 public:
     vector<double> medianSlidingWindow(vector<int>& nums, int k) {
         vector<double>ans;
-
+        multiset<double>window;
         int n=nums.size();
+        double sum;
+        for(int i=0; i<n; i++){
+           if (window.size()<k)window.insert(nums[i]);
+           else if(i>=k){
+            window.erase(window.find(nums[i-k]));
+            window.insert(nums[i]);
+           }
+           if(window.size()==k){
+            auto it=window.begin();
+            advance(it,k/2);
 
-        for(int i=0; i<n-k+1 ; i++){
-            priority_queue<double>lower;
-            priority_queue<double,vector<double>,greater<double>>upper;
-            double sum;
-            for(int j=i; j<k+i;j++){
-                if(lower.empty() || nums[j]<=lower.top()){
-                    lower.push(nums[j]);
-                }
-                else upper.push(nums[j]);
-
-                if(lower.size()>upper.size()+1){
-                    upper.push(lower.top());
-                    lower.pop();
-                }
-                else if(lower.size()<upper.size()){
-                    lower.push(upper.top());
-                    upper.pop();
-                }
+            if(k%2==0){
+                auto it2=it;
+                it2--;
+                sum=(*it+*it2)/2.0;
+                ans.push_back(sum);
 
             }
-
-            if(lower.size()==upper.size()){
-                sum=(lower.top()+upper.top())/2.0;
+            else{
+                sum=*it;
+                ans.push_back(sum);
             }
-            else sum=lower.top();
-            ans.push_back(sum);
+           }
+
         }
         return ans;
     }

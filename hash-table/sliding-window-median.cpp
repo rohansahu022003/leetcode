@@ -1,34 +1,27 @@
 class Solution {
 public:
-    vector<double> medianSlidingWindow(vector<int>& nums, int k) {
-        vector<double>ans;
-        multiset<double>window;
-        int n=nums.size();
-        double sum;
-        for(int i=0; i<n; i++){
-           if (window.size()<k)window.insert(nums[i]);
-           else if(i>=k){
-            window.erase(window.find(nums[i-k]));
-            window.insert(nums[i]);
-           }
-           if(window.size()==k){
-            auto it=window.begin();
-            advance(it,k/2);
+   vector<double> medianSlidingWindow(vector<int>& nums, int k) {
+    multiset<int> window(nums.begin(), nums.begin() + k);
+    auto mid = next(window.begin(), k / 2);
+    vector<double> medians;
+    for (int i=k; ; i++) {
 
-            if(k%2==0){
-                auto it2=it;
-                it2--;
-                sum=(*it+*it2)/2.0;
-                ans.push_back(sum);
+        // Push the current median.
+        medians.push_back((double(*mid) + *prev(mid, 1 - k%2)) / 2);
 
-            }
-            else{
-                sum=*it;
-                ans.push_back(sum);
-            }
-           }
+        // If all done, return.
+        if (i == nums.size())
+            return medians;
+            
+        // Insert nums[i].
+        window.insert(nums[i]);
+        if (nums[i] < *mid)
+            mid--;
 
-        }
-        return ans;
+        // Erase nums[i-k].
+        if (nums[i-k] <= *mid)
+            mid++;
+        window.erase(window.lower_bound(nums[i-k]));
     }
+}
 };

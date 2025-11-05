@@ -5,9 +5,21 @@ public:
 long long count=0;
         if(nums.size()%2==1){
             long long mid= ceil(nums.size()/2);
-            if(nums[mid]!=k)count+=abs(nums[mid]-k);
-            if(mid-1>=0 && nums[mid-1]>k)count+=abs(nums[mid-1]-k);
-            if(mid+1<nums.size() && nums[mid+1]<k)count+=abs(nums[mid+1]-k);
+            long long mid2=mid;
+            if(nums[mid]!=k){
+                count+=abs(nums[mid]-k);
+                nums[mid]=k;
+            }
+            while(mid-1>=0 && nums[mid-1]>nums[mid]){
+                count+=abs(nums[mid-1]-nums[mid]);
+                nums[mid-1]=k;
+                mid--;
+            }
+            while(mid2+1<nums.size() && nums[mid2+1]<nums[mid2]){
+                count+=abs(nums[mid2+1]-nums[mid2]);
+                nums[mid2]=k;
+                mid2++;
+            }
         }
        
 

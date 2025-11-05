@@ -1,23 +1,27 @@
 class MedianFinder {
-    vector<double>arr;
+    multiset<double>arr;
 public:
     MedianFinder() {
         
     }
     
     void addNum(int num) {
-        arr.push_back(num);
-        sort(arr.begin(), arr.end());
+        arr.insert(num);
+        
     }
     
     double findMedian() {
         double ans;
-        if(arr.size()%2==0){
-            ans=(arr[arr.size()/2]+arr[(arr.size()/2)-1])/2;
+        int n=arr.size();
+        auto it=arr.begin();
+
+        advance(it,n/2);
+        if(n%2==0){
+            auto it2=it;
+            it2--;
+            ans=(*it2+*it)/2.0;
         }
-        else{
-            ans=arr[arr.size()/2];
-        }
+        else ans= *it;
         return ans;
     }
 };

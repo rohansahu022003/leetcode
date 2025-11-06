@@ -4,14 +4,13 @@ class DSU{
     vector<int>size;
     vector<set<int>>comp;
     
-    private:
-    ds(int n){
+    DSU(int n){
         parent.resize(n+1);
         size.resize(n+1,1);
         comp.resize(n+1);
-        for(int i=1 i<=n;i++){
+        for(int i=1; i<=n;i++){
             parent[i]=i;
-            comp[i]=i;
+            comp[i].insert(i);
         }
     }
 
@@ -19,32 +18,33 @@ class DSU{
         if(parent[a]==a)return a;
         return parent[a]=find(parent[a]);
     }
-    void unite(int a,intb){
-        ulpa=find(a);
-        ulpb=find(b);
+    void unite(int a,int b){
+       int ulpa=find(a);
+       int ulpb=find(b);
         if(ulpa==ulpb)return;
         if(size[ulpa]>size[ulpb]){
             parent[ulpb]=ulpa;
             size[ulpa]+=size[ulpb];
-            comp[ulpa].insert(ulpb.begin(),ulpb.end());
-            comp[ulpb].clear;
+            comp[ulpa].insert(comp[ulpb].begin(),comp[ulpb].end());
+            comp[ulpb].clear();
         }
         else{
             parent[ulpa]=ulpb;
             size[ulpb]+=size[ulpa];
-            comp[ulpb].insert(ulpa.begin(), ulpa.end());
-            comp[ulpa].clear;
+            comp[ulpb].insert(comp[ulpa].begin(),comp[ulpa].end());
+            comp[ulpa].clear();
         }
 
     }
-void remove(x){
+void remove(int x){
     int root=find(x);
     comp[root].erase(x);
 }
-int station(x){
+int station( int x){
     int root=find(x);
     if(comp[root].empty())return -1;
-    return *comp[root].begin()
+    if(comp[root].find(x)!=comp[root].end())return x;
+    return *comp[root].begin();
 }
 };
 
@@ -62,8 +62,9 @@ vector<int>ans;
         int type=q[0];
         int node=q[1];
         if(type==2)ds.remove(node);
-        else int res=ds.station(node);
+       else{ int res=ds.station(node);
         ans.push_back(res);
+       }
        }
 
        return ans; 

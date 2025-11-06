@@ -1,48 +1,71 @@
+class DSU{
+    public:
+    vector<int>parent;
+    vector<int>size;
+    vector<set<int>>comp;
+    
+    private:
+    ds(int n){
+        parent.resize(n+1);
+        size.resize(n+1,1);
+        comp.resize(n+1);
+        for(int i=1 i<=n;i++){
+            parent[i]=i;
+            comp[i]=i;
+        }
+    }
+
+    int find(int a){
+        if(parent[a]==a)return a;
+        return parent[a]=find(parent[a]);
+    }
+    void unite(int a,intb){
+        ulpa=find(a);
+        ulpb=find(b);
+        if(ulpa==ulpb)return;
+        if(size[ulpa]>size[ulpb]){
+            parent[ulpb]=ulpa;
+            size[ulpa]+=size[ulpb];
+            comp[ulpa].insert(ulpb.begin(),ulpb.end());
+            comp[ulpb].clear;
+        }
+        else{
+            parent[ulpa]=ulpb;
+            size[ulpb]+=size[ulpa];
+            comp[ulpb].insert(ulpa.begin(), ulpa.end());
+            comp[ulpa].clear;
+        }
+
+    }
+void remove(x){
+    int root=find(x);
+    comp[root].erase(x);
+}
+int station(x){
+    int root=find(x);
+    if(comp[root].empty())return -1;
+    return *comp[root].begin()
+}
+};
+
 class Solution {
 public:
     vector<int> processQueries(int c, vector<vector<int>>& connections, vector<vector<int>>& queries) {
-        vector<vector<int>>adj(c+1);
+        DSU ds(c);
+       for(auto C: connections){
+        int u=C[0]; int v=C[1];
+        ds.unite(u,v);
 
-        for(auto C: connections){
-            int u=C[0];
-            int v=C[1];
-            adj[u].push_back(v);
-            adj[v].push_back(u);
-        }
-        vector<int>online(c+1,1);
-        vector<int>ans;
-        
-        
+       }
+vector<int>ans;
+       for(auto q:queries){
+        int type=q[0];
+        int node=q[1];
+        if(type==2)ds.remove(node);
+        else int res=ds.station(node);
+        ans.push_back(res);
+       }
 
-        for(auto q: queries){
-            int check=INT_MAX;
-            if(q[0]==1 && online[q[1]]==1)ans.push_back(q[1]);
-            else if(q[0]==2)online[q[1]]=0;
-            else if(q[0]==1 && online[q[1]]==0){
-                queue<int>Q;
-                vector<int>vis(c+1,0);
-                Q.push(q[1]);
-                vis[q[1]]=1;
-                while(!Q.empty()){
-                    int p=Q.front();
-                    Q.pop();
-                    for(auto it:adj[p]){
-                        if(!vis[it]){
-                            vis[it]=1;
-                        Q.push(it);
-                        if(online[it]==1 && check>it ){
-                            check=it;
-                        }
-                        }
-
-                    }
-                }
-                if(check==INT_MAX)ans.push_back(-1);
-                else ans.push_back(check);
-
-            }
-        }
-        return ans;
-        
+       return ans; 
     }
 };

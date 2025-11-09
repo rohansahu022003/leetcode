@@ -5,9 +5,9 @@ public:
         int ans=0;
         int remain=1;
         for(int i=0; i<nums.size(); i++){
-remain--;
-remain+=nums[i];
-ans++;
+        remain--;
+        remain+=nums[i];
+        if(nums[i]>0)ans++;
 if(remain>=nums.size()-1-i)break;
         }
         return ans;

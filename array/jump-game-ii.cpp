@@ -8,7 +8,7 @@ public:
 remain--;
 remain+=nums[i];
 ans++;
-if(remain>=nums.size()-i)break;
+if(remain>=nums.size()-1-i)break;
         }
         return ans;
     }

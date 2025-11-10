@@ -7,7 +7,7 @@ public:
            if(nums[i]!=0) freq[nums[i]]++;
         }
         int maxel=*max_element(nums.begin(),nums.end());
-
+if(freq.size()==1)return 1;
         int ans=0;
         for(auto f:freq){
             if(f.first==maxel)ans+=f.second;

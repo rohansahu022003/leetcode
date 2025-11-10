@@ -2,17 +2,17 @@ class Solution {
 public:
     int minOperations(vector<int>& nums) {
        int ans=0;
-       stack<int>stack;
+       vector<int>stack;
 
        for(auto num : nums){
-        while(!stack.empty() && stack.top()>num){
-            stack.pop();
+        while(!stack.empty() && stack.back()>num){
+            stack.pop_back();
         }
         if(num==0)continue;
 
-        if(stack.empty() || stack.top()<num){
+        if(stack.empty() || stack.back()<num){
             ans++;
-            stack.push(num);
+            stack.push_back(num);
         }
        }
        return ans;

@@ -21,6 +21,6 @@ public:
             }
         }
        }
-       return n-mingcd+1;
+       return n+mingcd-1;
     }
 };

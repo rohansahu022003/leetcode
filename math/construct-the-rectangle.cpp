@@ -4,7 +4,7 @@ public:
       int l;
       int w;
 int dist=INT_MAX;
-      for(int i=1; i<=area/2; i++){
+      for(int i=1; i<=ceil(area/2); i++){
         if(area%i==0){
            int j=area/i;
             if(abs(j-i)<dist){

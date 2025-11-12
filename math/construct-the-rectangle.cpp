@@ -7,4 +7,6 @@ public:
         w--;
      }
      return {area/w,w};
+
+    }
 };

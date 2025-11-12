@@ -1,6 +1,7 @@
 class Solution {
 public:
     string convertToBase7(int num) {
+        if (num==0)return to_string(num);
         int n=abs(num);
 string ans="";
         while(n){

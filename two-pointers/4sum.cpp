@@ -23,7 +23,7 @@ public:
                     k++;
                     m--;
                 }
-                if(sum<target)k++;
+                else if(sum<target)k++;
                 else m--;
                 }
             }

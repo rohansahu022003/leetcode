@@ -19,8 +19,8 @@ int n=nums.size();
             if(sum==target){
                 return sum;
             }
-            else if(sum>target)j++;
-            else k--;
+            else if(sum>target)k--;
+            else j++;
         }
 
         }

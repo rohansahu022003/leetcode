@@ -6,7 +6,7 @@ public:
         int count=0;
         int j=0;
         
-        while(j<nums.size()){
+        while(j<nums.size() && i<nums.size()){
             int sum;
            if(i==j)sum=nums[i];
            else if(i!=j)sum=nums[i]+nums[j];

@@ -1,8 +1,8 @@
 class Solution {
 public:
     int addDigits(int num) {
-        string s=to_string(num);
-       int n;
+    string s=to_string(num);
+       int n=num;
         while(s.size()!=1){
               n=0;
             for(char c:s){

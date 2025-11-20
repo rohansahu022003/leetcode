@@ -22,7 +22,10 @@ public:
             for(auto c:choosen){
                 if(c>=start && c<=end)k++;
             }
-        if(k==1)choosen.insert(end);
+        if(k==1){
+            if(choosen.find(end)!=choosen.end())choosen.insert(end-1);
+            else choosen.insert(end);
+        }
         else if(k==0){
         choosen.insert(end);
         choosen.insert(end-1);

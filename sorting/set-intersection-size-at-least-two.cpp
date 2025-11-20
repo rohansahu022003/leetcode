@@ -14,10 +14,6 @@ public:
                 choosen.insert(end);
                 choosen.insert(end-1);
             }
-           else if(start>intervals[i-1][1] && i>0){
-            choosen.insert(end);
-            choosen.insert(end-1);
-           }
            else{
             for(auto c:choosen){
                 if(c>=start && c<=end)k++;
@@ -30,10 +26,7 @@ public:
         choosen.insert(end);
         choosen.insert(end-1);
         }
-           }
-           
-
-           
+           }  
         }
         int ans=choosen.size();
         return ans;

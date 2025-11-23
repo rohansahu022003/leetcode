@@ -14,13 +14,13 @@ public:
     bool remove(int val) {
         if(mpp.find(val)==mpp.end())return false;
         mpp.erase(val);
-        return val;
+        return true;
     }
     
     int getRandom() {
         int ans;
         for(auto m: mpp){
-ans=m.first;
+        ans=m.first;
         }
         return ans;
     }

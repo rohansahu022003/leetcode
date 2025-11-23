@@ -6,10 +6,10 @@ public:
         sort(intervals.begin(), intervals.end());
 
         for(auto i: intervals){
-            if(merged.empty() || merged.back()[1]<i[0]){
+            if(merged.empty()|| merged.back()[1]<i[0]){
                 merged.push_back(i);
             }
-            else{
+            else {
                 merged.back()[1]=max(merged.back()[1], i[1]);
             }
 

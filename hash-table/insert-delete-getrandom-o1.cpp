@@ -1,5 +1,6 @@
 class RandomizedSet {
     unordered_map<int,int>mpp;
+    vector<int>arr;
 public:
     RandomizedSet() {
         
@@ -7,22 +8,27 @@ public:
     
     bool insert(int val) {
         if(mpp.find(val)!=mpp.end())return false;
-        mpp[val]++;
+        arr.push_back(val);
+        mpp[val]=arr.size()-1;
         return true;
     }
     
     bool remove(int val) {
         if(mpp.find(val)==mpp.end())return false;
+        int indx=mpp[val];
+        int last=arr.back();
+
+        arr[indx]=last;
+        mpp[last]=indx;
+
+        arr.pop_back();
         mpp.erase(val);
+        
         return true;
     }
     
     int getRandom() {
-        int ans;
-        for(auto m: mpp){
-        ans=m.first;
-        }
-        return ans;
+       return arr[rand()%arr.size()];
     }
 };
 

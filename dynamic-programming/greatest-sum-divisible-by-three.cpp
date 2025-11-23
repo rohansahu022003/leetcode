@@ -1,61 +1,47 @@
 class Solution {
 public:
     int maxSumDivThree(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
-        int x1=0;
-        int sumx1=0;
-        int x2=0;
-        int sumx2=0;
-        int sum=0;
-        for(int i=0; i<nums.size(); i++){
-         sum+=nums[i];
-        }
-        int extra=sum%3;
-        if(extra==0)return sum;
-       else if(extra==1){
-        for(int i=0; i<nums.size();i++){
-            if(nums[i]%3==1){
-                x1++;
-                sumx1+=nums[i];
-            }
-            else if(nums[i]%3==2){
-                x2++;
-                sumx2+=nums[i];
-        }
-        if(x1==1){
-            sum-=sumx1;
-            break;
-        }
-        else if(x2==2){
-            sum-=sumx2;
-            break;
-        }
-
-       }
-       }
-       else if(extra==2){
-         for(int i=0; i<nums.size();i++){
-            if(nums[i]%3==1){
-                x1++;
-                sumx1+=nums[i];
-            }
-            else if(nums[i]%3==2){
-                x2++;
-                sumx2+=nums[i];
-        }
-        if(x1==2){
-            sum-=sumx1;
-            break;
-        }
-        else if(x2==1){
-            sum-=sumx2;
-            break;
-        }
-       }
-       }
-
-
+        sort(nums.begin(), nums.end());
         
-        return sum;
+        int sum = 0;
+        for (int x : nums) sum += x;
+
+        int extra = sum % 3;
+        if (extra == 0) return sum;
+
+        int min1_mod1 = INT_MAX, min2_mod1 = INT_MAX;
+        int min1_mod2 = INT_MAX, min2_mod2 = INT_MAX;
+
+        for (int x : nums) {
+            if (x % 3 == 1) {
+                if (x < min1_mod1) {
+                    min2_mod1 = min1_mod1;
+                    min1_mod1 = x;
+                } else if (x < min2_mod1) {
+                    min2_mod1 = x;
+                }
+            } 
+            else if (x % 3 == 2) {
+                if (x < min1_mod2) {
+                    min2_mod2 = min1_mod2;
+                    min1_mod2 = x;
+                } else if (x < min2_mod2) {
+                    min2_mod2 = x;
+                }
+            }
+        }
+
+       
+        if (extra == 1) {
+            int option1 = (min1_mod1 == INT_MAX ? -1 : sum - min1_mod1);
+            int option2 = (min1_mod2 == INT_MAX || min2_mod2 == INT_MAX ? -1 : sum - (min1_mod2 + min2_mod2));
+            return max(option1, option2);
+        }
+
+        else { 
+            int option1 = (min1_mod2 == INT_MAX ? -1 : sum - min1_mod2);
+            int option2 = (min1_mod1 == INT_MAX || min2_mod1 == INT_MAX ? -1 : sum - (min1_mod1 + min2_mod1));
+            return max(option1, option2);
+        }
     }
 };

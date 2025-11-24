@@ -1,6 +1,6 @@
 class MinStack {
     stack<int>st;
-    multiset<int>s;
+    map<int,int>mpp;
 public:
     MinStack() {
         
@@ -8,13 +8,14 @@ public:
     
     void push(int val) {
         st.push(val);
-        s.insert(val);
+        mpp[val]++;
     }
     
     void pop() {
-        int t=st.top();
+    int t=st.top();
        st.pop(); 
-       s.erase(t);
+    mpp[t]--;
+    if(mpp[t]==0)mpp.erase(t);
     }
     
     int top() {
@@ -22,7 +23,8 @@ public:
     }
     
     int getMin() {
-       return *s.begin();
+       auto m= mpp.begin();
+       return m->first;
     }
 };
 

@@ -1,9 +1,7 @@
 class MinStack {
-    stack<int>st,minst;
-   
 public:
-    MinStack() {
-        
+ stack<int>st,minst;
+    MinStack() {   
     }
     
     void push(int val) {

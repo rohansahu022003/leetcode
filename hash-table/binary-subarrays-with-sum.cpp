@@ -8,8 +8,8 @@ public:
 
         for(auto num:nums){
             sum+=num;
-            int remove=(sum-goal);
-            ans+=mpp[remove];
+            int remove=sum-goal;
+           if(mpp.count(remove)) ans+=mpp[remove];
             mpp[sum]++;
 
         }

@@ -7,9 +7,10 @@ public:
         for(auto num:nums){
             sum+=num;
             int mod=sum%k;
+            if(mod<0)mod+=k;
             ans+=mpp[mod];
             mpp[mod]++;
-            if(sum<0)sum=0;
+            
         }
         return ans;
     }

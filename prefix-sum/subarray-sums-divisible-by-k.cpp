@@ -6,7 +6,7 @@ public:
         mpp[0]=1;
         for(auto num:nums){
             sum+=num;
-            int mod=sum%k;
+            int mod=abs(sum%k);
             ans+=mpp[mod];
             mpp[mod]++;
         }

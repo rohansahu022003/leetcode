@@ -11,14 +11,26 @@ public:
 
         for(auto m:mpp){
             if(m.second.size()==1)continue;
+           
             else{
+                 long long total_sum=0,presum=0,postsum=0;
                 for(int i=0; i<m.second.size(); i++){
-                    for(int j=0; j<m.second.size(); j++){
-                        ans[m.second[i]]+=abs(m.second[i]-m.second[j]);
-                    }
+                    total_sum+=m.second[i];
+                }
+                for(int i=0; i<m.second.size(); i++){
+                    int index=m.second[i];
+                    postsum=total_sum-presum-index;
+
+                    ans[index]+=(index*(long long)i);
+                    ans[index]-=presum;
+                    ans[index]-=(index*(long long)(m.second.size()-i-1));
+                    ans[index]+=postsum;
+
+                    presum+=index;
+                }
                 }
             }
-        }
+        
         return ans;
     }
 };

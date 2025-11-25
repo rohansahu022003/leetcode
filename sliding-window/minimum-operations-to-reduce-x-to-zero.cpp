@@ -1,29 +1,26 @@
 class Solution {
 public:
     int minOperations(vector<int>& nums, int x) {
-        int total = 0;
-        for(int n : nums) total += n;
+        int sum=0;
+        for(auto num:nums)sum+=num;
+        if(sum<x)return -1;
+        if(sum==x)return nums.size();
+        int target=sum-x;
 
-        int target = total - x;
-        if(target < 0) return -1;
-        if(target == 0) return nums.size();
+        int left=0;
+        int longest=-1;
+        int current=0;
 
-        int n = nums.size();
-        int left = 0, curSum = 0, longest = -1;
-
-        for(int right = 0; right < n; right++){
-            curSum += nums[right];
-
-            while(curSum > target){
-                curSum -= nums[left];
+        for(int right=0; right<nums.size(); right++){
+            current+=nums[right];
+            
+            while(current>target){
+                current-=nums[left];
                 left++;
             }
+            if(current==target)longest=max(longest,right-left+1);
 
-            if(curSum == target){
-                longest = max(longest, right - left + 1);
-            }
         }
-
-        return (longest == -1) ? -1 : n - longest;
+        return (longest==-1)?-1:nums.size()-longest;
     }
 };

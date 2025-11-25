@@ -9,7 +9,7 @@ public:
         for(auto num:nums){
             sum+=num;
             int remove=sum-goal;
-           if(mpp.find(remove)!=mpp.end()) ans+=mpp[remove];
+           if(mpp.count(remove)) ans+=mpp[remove];
             mpp[sum]++;
 
         }

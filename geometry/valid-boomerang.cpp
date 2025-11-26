@@ -1,13 +1,14 @@
 class Solution {
 public:
     bool isBoomerang(vector<vector<int>>& points) {
-        double m=(double(points[1][1])-points[0][1])/(double(points[1][0])-points[0][0]);
-        double n=(double(points[2][1])-points[1][1])/(double(points[2][0])-points[1][0]);
-        set<vector<int>>st;
-        for(auto p:points)st.insert(p);
-        if(st.size()<=2)return false;
-        if(points[0][0]==points[1][0] && points[1][0]==points[2][0])return false;
-        if(points[0][1]==points[1][1] && points[1][1]==points[2][1])return false;
-        return m!=n;
+        int x1 = points[0][0];
+        int x2 = points[1][0];
+        int x3 = points[2][0];
+
+        int y1 = points[0][1];
+        int y2 = points[1][1];
+        int y3 = points[2][1];
+
+        return (x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2)) != 0;
     }
 };

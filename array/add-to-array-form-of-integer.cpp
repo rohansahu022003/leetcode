@@ -9,9 +9,13 @@ int carry=0;
         int m=num[i]+j+carry;
         carry=0;
         ans.push_back(m%10);
-        if(m>9)carry=1;
+        carry=m/10;
        }
-      if(carry==1)ans.push_back(1);
+       while(k){
+        ans.push_back(k%10);
+        k/=10;
+       }
+      if(carry!=0)ans.push_back(carry);
        reverse(ans.begin(),ans.end());
        return ans;
     }

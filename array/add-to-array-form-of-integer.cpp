@@ -12,9 +12,11 @@ int carry=0;
         carry=m/10;
        }
        while(k){
-        ans.push_back(k%10+carry);
+        int m=k%10+carry;
+        ans.push_back(m%10);
         carry=0;
         k/=10;
+        carry=m/10;
        }
       if(carry!=0)ans.push_back(carry);
        reverse(ans.begin(),ans.end());

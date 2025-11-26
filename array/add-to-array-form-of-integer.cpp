@@ -12,7 +12,8 @@ int carry=0;
         carry=m/10;
        }
        while(k){
-        ans.push_back(k%10);
+        ans.push_back(k%10+carry);
+        carry=0;
         k/=10;
        }
       if(carry!=0)ans.push_back(carry);

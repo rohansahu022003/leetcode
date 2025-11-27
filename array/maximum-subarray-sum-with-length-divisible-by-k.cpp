@@ -11,7 +11,7 @@ public:
                 maxsum[(i+1)%k]=sum;
             }
             else{
-                int m=sum-maxsum[(i+1)%k];
+                long long m=sum-maxsum[(i+1)%k];
             if(m>ans)ans=m;
                 if(sum<maxsum[(i+1)%k]){
                     maxsum[(i+1)%k]=sum;

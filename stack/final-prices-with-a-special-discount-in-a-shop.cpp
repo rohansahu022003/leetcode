@@ -10,7 +10,8 @@ public:
                     while(!st.empty()){
                         int a=st.front()-prices[i];
                         st.pop_front();
-                        ans.push_back(a);
+                      if(a>0)  ans.push_back(a);
+                      else ans.push_back(0);
                     }
                     st.push_back(prices[i]);
                 }

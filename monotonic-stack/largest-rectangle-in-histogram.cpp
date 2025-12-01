@@ -8,8 +8,11 @@ public:
         for(int i=0; i<h.size(); i++){
             if(st.empty() || st.back()<=h[i])st.push_back(h[i]);
             else{
+                int a;
+                a=h[i]*(st.size()+1);
+                ans=max(ans,a);
             while(st.size() && st.back()>h[i]){
-                int a=st.front()*st.size();
+                a=st.front()*st.size();
              ans=max(ans, a);
              st.pop_front();
             }

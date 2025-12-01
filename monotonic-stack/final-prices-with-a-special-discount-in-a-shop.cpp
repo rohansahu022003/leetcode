@@ -1,29 +1,15 @@
 class Solution {
 public:
     vector<int> finalPrices(vector<int>& prices) {
-        deque<int>st;
-        vector<int>ans;
-        for(int i=0; i<prices.size(); i++){
-            if(st.empty())st.push_back(prices[i]);
-            else{
-                if(st.back()>=prices[i]){
-                    while(!st.empty()){
-                        int a=st.front()-prices[i];
-                        st.pop_front();
-                      if(a>0)  ans.push_back(a);
-                      else ans.push_back(0);
-                    }
-                    st.push_back(prices[i]);
-                }
-                else{
-                    st.push_back(prices[i]);
-                }
-            }
+       vector<int>st;
+
+       for(int i=0; i<prices.size(); i++){
+        while(st.size() && prices[st.back()]>=prices[i]){
+            prices[st.back()]-=prices[i];
+            st.pop_back();
         }
-        while(!st.empty()){
-            ans.push_back(st.front());
-            st.pop_front();
-        }
-        return ans;
+        st.push_back(i);
+       }
+       return prices;
     }
 };

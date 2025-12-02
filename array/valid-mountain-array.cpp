@@ -7,7 +7,7 @@ public:
         int sd=0;
         for(int i=0; i<n-1;i++){
             if(arr[i]<arr[i+1] && sd>0)return false;
-            else if(arr[i]==a[i+1])return false;
+            else if(arr[i]==arr[i+1])return false;
                 else if(arr[i]<arr[i+1]){
                     si++;
                 }

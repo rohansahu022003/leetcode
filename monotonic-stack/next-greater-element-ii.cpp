@@ -6,15 +6,14 @@ public:
        unordered_map<int,int>next;
         vector<int>ans(n,-1);
         for(int i=0; i<2*n; i++){
-            while(!st.empty() && st.top()< nums[i%n]){
-                next[st.top()]=nums[i%n];
+            while(!st.empty() && nums[st.top()]< nums[i%n]){
+                next[nums[st.top()]]=nums[i%n];
+                ans[st.top()]=next[nums[st.top()]];
                 st.pop();
             }
-            st.push(nums[i%n]);
+            st.push(i%n);
         }
-        for(int i=0 ; i<n; i++){
-            if(next.count(nums[i]))ans[i]=next[nums[i]];
-        }
+       
         return ans;
     }
 };

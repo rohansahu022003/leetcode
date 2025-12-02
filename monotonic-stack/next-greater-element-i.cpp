@@ -7,7 +7,7 @@ public:
         unordered_map<int,int>next;
 
         for(auto num: nums2){
-            if(!st.empty() && st.top()<num){
+            while(!st.empty() && st.top()<num){
                 next[st.top()]=num;
                 st.pop();
             }

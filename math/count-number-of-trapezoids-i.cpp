@@ -19,7 +19,7 @@ int const mod=10e9+7;
         vector<int>pairs;
         for(auto l:level){
             if(l.second<2)continue;
-            int i=factorial(l.second)/(factorial(2)*factorial(l.second-2));
+            int i=factorial(l.second)/2*factorial(l.second-2));
             pairs.push_back(i);
         }
 

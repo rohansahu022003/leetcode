@@ -5,6 +5,7 @@ public:
         deque<int>st;
         int ans=0;
         int low=INT_MAX;
+        int j=1;
         for(int i=0; i<h.size(); i++){
             if(st.empty() || st.back()<=h[i])st.push_back(h[i]);
             else{
@@ -16,16 +17,22 @@ public:
              ans=max(ans, a);
              st.pop_front();
             }
-            st.push_back(h[i]);
+        if(h[i]>0)st.push_back(h[i]);
             }
-            low=min(low,h[i]);
+           low=min(low,h[i]);
+           ans=max(ans,low*j);
+           j++;
+           if(h[i]==0){
+            low=INT_MAX;
+            j=1;
+           }
         }
         while(!st.empty()){
             int a=st.front()*st.size();
              ans=max(ans, a);
              st.pop_front();
         }
-        ans=max(ans,low*n);
+
         return ans;
     }
 };

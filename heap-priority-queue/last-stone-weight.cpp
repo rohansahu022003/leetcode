@@ -14,7 +14,7 @@ public:
             if(x==y)continue;
             pq.push(y-x);
         }
-
+        if(pq.empty())return 0;
         return pq.top();
     }
 };

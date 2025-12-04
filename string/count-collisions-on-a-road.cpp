@@ -7,12 +7,12 @@ public:
             if(directions[i]=='R' && directions[i+1]=='L'){
                 ans+=2;
                 directions[i]=='S';
-                directions[i+1]=='S';
-                i++;
+                directions[i+1]='S';
+                
             }
             else if(directions[i]=='R' && directions[i+1]=='S'){
                 ans++;
-                directions[i]=='S';
+                
             }
             else if(directions[i]=='S'  && directions[i+1]=='L'){
                 ans++;

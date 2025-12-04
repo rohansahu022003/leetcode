@@ -3,23 +3,15 @@ public:
     int countCollisions(string directions) {
         int ans=0;
 
-        for(int i=0; i<directions.size()-1;i++){
-            if(directions[i]=='R' && directions[i+1]=='L'){
-                ans+=2;
-                directions[i]=='S';
-                directions[i+1]='S';
-                
-            }
-            else if(directions[i]=='R' && directions[i+1]=='S'){
-                ans++;
-                
-            }
-            else if(directions[i]=='S'  && directions[i+1]=='L'){
-                ans++;
-                directions[i+1]='S';
-            }
-        
-        }
+       int l=0;
+       int n=directions.size();
+       int r=n-1;
+       while(l<n && directions[l]=='L')l++;
+       while(r>=0 && directions[r]=='R')r--;
+
+       for(int i=l; i<=r; i++){
+        if(directions[i]!='S')ans++;
+       }
         return ans;
     }
 };

@@ -11,8 +11,8 @@ public:
     int i=minimum.top().second.first;
     int j=minimum.top().second.second;
     minimum.pop();
-    minimum.push({nums1[i]+nums2[j+1],{i,j+1}});
-    if(j==0){
+   if(j+1<nums2.size())minimum.push({nums1[i]+nums2[j+1],{i,j+1}});
+    if(j==0 && i+1<nums1.size()){
         minimum.push({nums1[i+1]+nums2[j],{i+1,j}});
     }
     ans.push_back({nums1[i],nums2[j]});

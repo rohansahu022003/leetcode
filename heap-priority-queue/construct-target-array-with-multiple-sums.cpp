@@ -1,6 +1,7 @@
 class Solution {
 public:
     bool isPossible(vector<int>& target) {
+        if(target.size()==1)return false;
         priority_queue<int>pq;
         int sum=0;
         for(auto t:target){

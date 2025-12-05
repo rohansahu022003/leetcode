@@ -1,8 +1,8 @@
 class Solution {
 public:
     bool isPossible(vector<int>& target) {
-        if(target.size()==1 && target[0]!=0)return false;
-          if(target.size()==1 && target[0]==0)return true;
+        if(target.size()==1 && target[0]!=1)return false;
+          if(target.size()==1 && target[0]==1)return true;
         priority_queue<int>pq;
         int sum=0;
         for(auto t:target){

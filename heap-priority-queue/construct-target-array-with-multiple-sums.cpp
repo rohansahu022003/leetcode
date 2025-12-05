@@ -1,10 +1,9 @@
 class Solution {
 public:
     bool isPossible(vector<int>& target) {
-        if(target.size()==1 && target[0]!=1)return false;
-          if(target.size()==1 && target[0]==1)return true;
+        if(target.size()==1) return target[0]==1;
         priority_queue<int>pq;
-        int sum=0;
+        long long sum=0;
         for(auto t:target){
          pq.push(t);
          sum+=t;

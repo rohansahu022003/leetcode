@@ -1,8 +1,9 @@
 class Solution {
 public:
     int specialTriplets(vector<int>& nums) {
+        int const mod=1e9+7;
         unordered_map<int,vector<int>>freq;
-        int ans=0;
+        long long ans=0;
         for(int i=0; i<nums.size(); i++){
              freq[nums[i]].push_back(i);
         }
@@ -13,9 +14,9 @@ public:
         if(!freq.count(target))continue;
 
         auto &vb=freq[target];
-        int left=lower_bound(vb.begin(),vb.end(),j)-vb.begin();
-        int right=vb.end()-upper_bound(vb.begin(),vb.end(),j);
-        ans+=left*right;
+        long long left=lower_bound(vb.begin(),vb.end(),j)-vb.begin();
+        long long right=vb.end()-upper_bound(vb.begin(),vb.end(),j);
+        ans=(ans+left*right)%mod;
        }
         return ans;
     }

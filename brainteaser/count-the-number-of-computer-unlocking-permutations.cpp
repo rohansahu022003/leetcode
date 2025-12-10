@@ -1,8 +1,9 @@
 class Solution {
     public:
-    int fact(int c){
+    int fact(long long c){
+        int const mod=1e9+7;
         if(c==1)return 1;
-        return c*fact(c-1);
+        return (c*fact(c-1))%mod;
     }
 public:
     int countPermutations(vector<int>& complexity) {

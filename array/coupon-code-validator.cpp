@@ -3,11 +3,7 @@ class Solution {
     bool coderight(string& a){
         if(a.size()==0)return false;
     for(char c : a) {
-        if(!(
-            (c >= 'a' && c <= 'z') ||
-            (c >= 'A' && c <= 'Z') ||
-            (c >= '0' && c <= '9')
-        ) && c!='_') return false;
+       if(!isalnum(c) && c!='_')return false;
     }
     return true;
     }

@@ -7,7 +7,7 @@ public:
         int t=0;
         int n=happiness.size()-1;
         for(int i=0; i<k;i++){
-            ans+=happiness[n--]-t;
+           if(t<=happiness[n]) ans+=happiness[n--]-t;
             t++;
         }
 

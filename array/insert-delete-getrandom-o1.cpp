@@ -1,5 +1,5 @@
 class RandomizedSet {
-    unordered_map<int,int>mpp;
+    unordered_map<int,int>check;
     vector<int>arr;
 public:
     RandomizedSet() {
@@ -7,32 +7,29 @@ public:
     }
     
     bool insert(int val) {
-        if(mpp.find(val)!=mpp.end())return false;
+        if(check.find(val)!=check.end())return false;
         arr.push_back(val);
-        mpp[val]=arr.size()-1;
+        check[val]=arr.size()-1;
         return true;
     }
     
     bool remove(int val) {
-        if(mpp.find(val)==mpp.end())return false;
-        int indx=mpp[val];
+        if(check.find(val)==check.end())return false;
+        int i=check[val];
         int last=arr.back();
-
-        arr[indx]=last;
-        mpp[last]=indx;
+        arr[i]=last;
+        check[last]=i;
 
         arr.pop_back();
-        mpp.erase(val);
-        
+        check.erase(val);
         return true;
     }
     
     int getRandom() {
-       return arr[rand()%arr.size()];
+        return arr[rand()%arr.size()];
+        
     }
 };
-
-auto init = atexit([]{ofstream("display_runtime.txt")<<"0";});
 
 /**
  * Your RandomizedSet object will be instantiated and called as such:

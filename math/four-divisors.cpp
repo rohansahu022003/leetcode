@@ -4,7 +4,7 @@ public:
         int ans=0;
         for(auto n: nums){
             unordered_set<int>st;
-            for(int i=1; i<n/2; i++){
+            for(int i=1; i<sqrt(n); i++){
                 if(n%i==0){
                     st.insert(i);
                     st.insert(n/i);

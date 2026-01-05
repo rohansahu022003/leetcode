@@ -4,8 +4,9 @@ public:
         long long ans=0;
         int negative=0;
 long long lowest=INT_MAX;
-        for(int i=0; i<matrix.size(); i++){
-            for(int j=0; j<matrix[i].size(); j++){
+int n=matrix.size();
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
                 
                 if(matrix[i][j]<=0)negative++;
                ans+=abs(matrix[i][j]);

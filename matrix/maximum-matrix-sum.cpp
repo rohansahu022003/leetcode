@@ -1,15 +1,15 @@
 class Solution {
 public:
     long long maxMatrixSum(vector<vector<int>>& matrix) {
-        int ans=0;
-        vector<int>negative;
-int lowest=INT_MAX;
+        long long ans=0;
+        vector<long long>negative;
+long long lowest=INT_MAX;
         for(int i=0; i<matrix.size(); i++){
             for(int j=0; j<matrix[i].size(); j++){
                 
                 if(matrix[i][j]<=0)negative.push_back(matrix[i][j]);
                 else{
-                    lowest=min(lowest, matrix[i][j]);
+                    lowest=min(lowest, (long long)matrix[i][j]);
                     ans+=matrix[i][j];
                 } 
             }

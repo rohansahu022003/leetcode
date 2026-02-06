@@ -4,14 +4,16 @@ public:
        sort(nums.begin(), nums.end());
 
        int ans=INT_MAX;
-       int n=nums.size()-1;
-       for(int i=0; i<=n; i++){
-        if(nums[n]<=nums[i]*k)ans=min(ans,i);
-       } 
+       int n=nums.size();
+      int maxlen=0;
+      int left=0;
 
-       for(int i=n; i>=0 ;i--){
-        if(nums[i]<=nums[0]*k)ans=min(ans,n-i);
-       }
-       return ans;
+      for(int right=0; right<n; right++){
+        while((long long)nums[right]> (long long)nums[left]*k)left++;
+
+        maxlen=max(maxlen, right-left+1);
+      }
+
+       return n-maxlen ;
     }
 };

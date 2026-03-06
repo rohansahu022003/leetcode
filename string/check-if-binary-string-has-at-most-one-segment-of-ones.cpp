@@ -2,7 +2,7 @@ class Solution {
 public:
     bool checkOnesSegment(string s) {
         if(s.length()==1 || s.length()==2)return true;
-        int x=stoi(s);
+        long long  x=stoll(s);
         int y=0;
         int count=0;
         while(x){

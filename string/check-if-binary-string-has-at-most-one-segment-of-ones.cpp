@@ -1,18 +1,17 @@
 class Solution {
 public:
     bool checkOnesSegment(string s) {
-        if(s.length()==1 || s.length()==2)return true;
-        long long  x=stoll(s);
-        int y=0;
-        int count=0;
-        while(x){
-           int digit=x%10;
-          
-           if(digit==1 && y==0)count++;
-           if(digit==1)y=1;
-           else y=0;
-           x/=10;
-        }
+        vector<int>num;
+    for(int i=0; i<s.lenght(); i++){
+      num.push_back(s[i]-'0');
+    }
+       int count=0;
+       int y=0;
+       for(int i=0; i<num.size();i++){
+        if(num[i]==1 && y==0)count++;
+        if(num[i]==1)y=1;
+        else y=0;
+       }
         if(count==1)return true;
         return false;
     }

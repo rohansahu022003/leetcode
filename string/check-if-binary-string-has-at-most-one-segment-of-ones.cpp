@@ -1,6 +1,7 @@
 class Solution {
 public:
     bool checkOnesSegment(string s) {
+        if(s.length()==1)return true;
         int x=stoi(s);
         int y=0;
         while(x){

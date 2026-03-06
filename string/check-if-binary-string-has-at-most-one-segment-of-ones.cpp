@@ -2,7 +2,7 @@ class Solution {
 public:
     bool checkOnesSegment(string s) {
         vector<int>num;
-    for(int i=0; i<s.lenght(); i++){
+    for(int i=0; i<s.length(); i++){
       num.push_back(s[i]-'0');
     }
        int count=0;

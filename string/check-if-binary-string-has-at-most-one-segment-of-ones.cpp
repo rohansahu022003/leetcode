@@ -7,8 +7,8 @@ public:
         int count=0;
         while(x){
            int digit=x%10;
-           if(digit==1)count++;
-           if(y==1 && digit==1)return true;
+          
+           if(digit==1 && y==0)count++;
            if(digit==1)y=1;
            else y=0;
            x/=10;

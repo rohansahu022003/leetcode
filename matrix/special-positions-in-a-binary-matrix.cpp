@@ -1,31 +1,30 @@
 class Solution {
 public:
     int numSpecial(vector<vector<int>>& mat) {
-        vector<pair<int,int>>freq;
+        int m=mat.size();
+        int n=mat[0].size();
 
-        for(int i=0; i<mat.size(); i++){
-            for(int j=0; j<mat[0].size();j++){
-                if(mat[i][j]==1)freq.push_back({i,j});
+        vector<int>row(m,0);
+        vector<int>col(n,0);
+
+
+        for(int i=0; i<m; i++){
+            for(int j=0; j<n;j++){
+                if(mat[i][j]==1){
+                    row[i]++;
+                    col[j]++;
+                }
             }
         }
 int ans=0;
           for(int i=0; i<mat.size(); i++){
             for(int j=0; j<mat[0].size();j++){
-               if(mat[i][j]==1){
-                bool flag=true;
-                for(int k=0; k<freq.size(); k++){
-                    int n=freq[k].first;
-                    int m=freq[k].second;
-                    if(i==n && j==m)continue;
-                    if(i==n || j==m){
-                        flag=false;
-                        break;
-                    }
-                }
-                if(flag==true)ans++;
-               }
+               if(mat[i][j]==1 && row[i]==1 && col[j]==1){
+               ans++;
+               
             }
         }
+          }
         return ans;
     }
 };
